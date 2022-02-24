@@ -108,6 +108,15 @@ class TextWidget extends BaseWidget {
 		this.scrollTop += this.innerHeight;
 	}
 
+	scrollXUp(x) {
+		this.scrollTop -= x;
+	}
+
+	scrollXDown(x) {
+		this.scrollTop += x;
+	}
+
+
 	onKey(name, matches, data) {
 		super.onKey(name, matches, data);
 
@@ -119,6 +128,10 @@ class TextWidget extends BaseWidget {
 			this.pageUp();
 		} else if (name === 'PAGE_DOWN') {
 			this.pageDown();
+		} else if (name == '5_UP') {
+			this.scrollXUp(5);
+		} else if (name == '5_DOWN') {
+			this.scrollXDown(5);
 		}
 	}
 
