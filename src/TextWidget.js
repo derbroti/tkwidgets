@@ -124,7 +124,7 @@ class TextWidget extends BaseWidget {
 
 	onSizeChanged() {
 		super.onSizeChanged();
-		
+
 		this.updateDisplayedText_ = true;
 		this.invalidate();
 	}

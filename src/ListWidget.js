@@ -265,7 +265,7 @@ class ListWidget extends BaseWidget {
 
 		for (let i = this.topIndex; i <= this.bottomIndex; i++) {
 			if (i >= this.items_.length) break;
-			
+
 			let item = this.items_[i];
 
 			term.moveTo(cursorX, cursorY);

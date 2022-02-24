@@ -3,7 +3,7 @@ const EventEmitter = require('events');
 class Renderer {
 
 	constructor(term, root) {
-		this.term_ = term;		
+		this.term_ = term;
 		this.root_ = root;
 		this.eventEmitter_ = new EventEmitter();
 		this.root_.renderer = this;
@@ -150,7 +150,7 @@ class Renderer {
 			results = this.drawBorders_(widget.childAt(i), results);
 		}
 
-		return results;	
+		return results;
 	}
 
 }

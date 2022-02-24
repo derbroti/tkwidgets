@@ -44,7 +44,7 @@ class BaseWidget {
 	// multiple times (such as loading an item while a list is scrolling)
 	// but you want a related action (such as loading an item) to happen
 	// only once things are stable.
-	// 
+	//
 	// For example:
 	// `this.doAsync('loadItem', callback)` could be called whenever
 	// the list is being scrolled but the actual callback will be called
@@ -59,7 +59,7 @@ class BaseWidget {
 		this.asyncActions_[name] = setTimeout(() => {
 			delete this.asyncActions_[name];
 			callback();
-		}, 100);	
+		}, 100);
 	}
 
 	on(eventName, callback) {
@@ -396,7 +396,7 @@ class BaseWidget {
 		if (s.borderRightWidth) output--;
 		output-=1;
 		return output;
-	}	
+	}
 
 	get innerHeight() {
 		const s = this.style;
