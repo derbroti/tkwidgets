@@ -18,7 +18,14 @@ function markdownRenderer(text, options = {}) {
 	const lines = text.split("\n");
 
 	const wrappedLines = [];
-	for (let i = 0; i < lines.length; i++) {
+
+	// separate title from text - derbroti 2022
+	wrappedLines.push(chalk.gray('━'.repeat(options.width)));
+	//wrappedLines.push(chalk.bold.underline(lines[0] + ' '.repeat(options.width - lines[0].length)));
+	wrappedLines.push(chalk.bold(lines[0]));
+	wrappedLines.push(chalk.gray('━'.repeat(options.width)));
+
+	for (let i = 1; i < lines.length; i++) {
 		const line = lines[i];
 		wrappedLines.push(termutils.wrapLine(line, options.width));
 	}
