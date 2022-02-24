@@ -36,8 +36,11 @@ function markdownRenderer(text, options = {}) {
 		if (type == 'code') {
 			context.isCode = !context.isCode;
 		}
-
-		wrappedLines[i] = renderLine(wrappedLines[i], nextLine, context);
+		if (!isCodeBlockMarker(wrappedLines[i])) {
+			wrappedLines[i] = renderLine(wrappedLines[i], nextLine, context);
+		} else {
+			wrappedLines[i] = chalk.gray(wrappedLines[i]);
+		}
 	}
 
 	return wrappedLines.join('\n');
@@ -58,7 +61,7 @@ function preRender(text) {
 			if (language) {
 				codeText = emphasize.highlight(language, codeText).value;
 			} else {
-				codeText = emphasize.highlightAuto(codeText).value;
+				//codeText = emphasize.highlightAuto(codeText).value;
 			}
 		} catch (error) {
 			// Happens for example when specified language is not registered
@@ -90,7 +93,7 @@ function preRender(text) {
 		}
 
 		if (inCodeBlock) {
-			currentCodeBlock.push(line);
+			currentCodeBlock.push(chalk.gray(line));
 		} else {
 			output.push(line);
 		}
@@ -167,7 +170,7 @@ function renderLine(line, nextLine, context) {
 		return chalk.gray(line);
 	}
 
-	if (isCodeBlockMarker(line)) return line;
+	if (isCodeBlockMarker(line)) return chalk.gray(line);
 
 	let output = [];
 	let inBold = false;

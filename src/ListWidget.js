@@ -274,7 +274,7 @@ class ListWidget extends BaseWidget {
 
 			if (i == this.currentIndex) {
 				if (this.hasKeyboard) {
-					style = chalk.bgWhite.black;
+					style = chalk.bgBlue.black;
 				} else {
 					style = chalk.bgBlackBright.black;
 				}
