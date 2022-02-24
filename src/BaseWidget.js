@@ -504,9 +504,10 @@ class BaseWidget {
 		const focusStyle = chalk.white;
 		const unfocusStyle = chalk.gray;
 		const style = this.hasFocus ? focusStyle : unfocusStyle;
+		const activeBorderColor = 45;
 
-		const hLineChar = this.hasFocus ? focusStyle('-') : unfocusStyle('.');
-		const vLineChar = this.hasFocus ? focusStyle('│') : unfocusStyle('|');
+		const hLineChar = this.hasFocus ? focusStyle("[38;5;"+activeBorderColor+"m━[34m") : unfocusStyle('─');
+		const vLineChar = this.hasFocus ? focusStyle("[38;5;"+activeBorderColor+"m┃[34m") : unfocusStyle('│');
 
 		if (this.style.borderTopWidth) {
 			term.drawHLine(x, y, width, hLineChar);
@@ -526,12 +527,12 @@ class BaseWidget {
 
 		if (this.style.borderBottomWidth && this.style.borderLeftWidth) {
 			term.moveTo(x, y + height - 1);
-			term.write(this.hasFocus ? style('\'-') : style('\'.'));
+			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻━[34m") : style('┴─'));
 		}
 
 		if (this.style.borderBottomWidth && this.style.borderRightWidth) {
 			term.moveTo(x + width - 1, y + height - 1);
-			term.write(style('\'\''));
+			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻[34m") : style('┴┴'));
 		}
 	}
 
