@@ -392,9 +392,8 @@ class BaseWidget {
 	get innerWidth() {
 		const s = this.style;
 		let output = this.width;
-		if (s.borderLeftWidth) output--;
-		if (s.borderRightWidth) output--;
-		output-=1;
+		if (s.borderLeftWidth) output-=1;
+		if (s.borderRightWidth) output-=2;
 		return output;
 	}
 
@@ -532,7 +531,7 @@ class BaseWidget {
 
 		if (this.style.borderBottomWidth && this.style.borderRightWidth) {
 			term.moveTo(x + width - 1, y + height - 1);
-			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻[34m") : style('┴┴'));
+			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻[34m┴") : style('┴┴'));
 		}
 	}
 
