@@ -394,6 +394,7 @@ class BaseWidget {
 		let output = this.width;
 		if (s.borderLeftWidth) output--;
 		if (s.borderRightWidth) output--;
+		output-=1;
 		return output;
 	}	
 
@@ -419,6 +420,7 @@ class BaseWidget {
 
 	get absoluteInnerX() {
 		let output = this.absoluteX;
+		output++
 		if (this.style.borderLeftWidth) output++;
 		return output;
 	}
@@ -515,7 +517,7 @@ class BaseWidget {
 		}
 
 		if (this.style.borderLeftWidth) {
-			term.drawVLine(x, y, height, vLineChar);
+			term.drawVLine(x, y, height, vLineChar+' ');
 		}
 
 		if (this.style.borderRightWidth) {
@@ -524,12 +526,12 @@ class BaseWidget {
 
 		if (this.style.borderBottomWidth && this.style.borderLeftWidth) {
 			term.moveTo(x, y + height - 1);
-			term.write(style('\''));
+			term.write(this.hasFocus ? style('\'-') : style('\'.'));
 		}
 
 		if (this.style.borderBottomWidth && this.style.borderRightWidth) {
 			term.moveTo(x + width - 1, y + height - 1);
-			term.write(style('\''));
+			term.write(style('\'\''));
 		}
 	}
 
