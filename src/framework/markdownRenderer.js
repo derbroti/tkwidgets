@@ -129,12 +129,12 @@ function inlineHeaderLevel(line) {
 function headerLevelStyle(level, isAlreadyUnderlined) {
 	if (!level) return chalk.white;
 
-	let levelToColor = ['magenta', 'green', 'cyan', 'yellow'];
+	let levelToColor = [51, 45, 39, 27, 62, 99];
 
 	const i = level - 1;
 	const color = i >= levelToColor.length ? levelToColor[levelToColor.length - 1] : levelToColor[i];
 
-	let output = chalk[color];
+	let output = chalk.ansi256(color);
 
 	if (!output) throw new Error('Invalid color: ' + color + ' (' + i + ')');
 
