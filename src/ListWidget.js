@@ -88,7 +88,7 @@ class ListWidget extends BaseWidget {
 		} else if (name == 'TOP') {
 			this.currentIndex = 0;
 		} else if (name == 'BOTTOM') {
-			this.currentIndex = this.maxTopIndex;
+			this.currentIndex = this.items_.length - 1;
 		} else if (name == '5_UP') {
 			this.selectXUp(5);
 		} else if (name == '5_DOWN') {
