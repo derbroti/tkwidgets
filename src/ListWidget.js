@@ -317,8 +317,8 @@ class ListWidget extends BaseWidget {
 		}
 
 		if (showScrollBar) {
-			term.drawVLine(cursorX + this.innerWidth - 1, 0, this.innerHeight+1, chalk.bgAnsi256(240).ansi256(16)(' '));
-			term.moveTo(cursorX + this.innerWidth - 1, (this.topIndex / (this.items_.length - this.innerHeight)) * this.innerHeight);
+			term.drawVLine(cursorX + this.innerWidth - 1, this.y, this.innerHeight, chalk.bgAnsi256(240).ansi256(16)(' '));
+			term.moveTo(cursorX + this.innerWidth - 1, this.y + ((this.topIndex / (this.items_.length - this.innerHeight)) * (this.innerHeight - 1)));
 			term.write(chalk.bgAnsi256(45).ansi256(255)(' '));
 		}
 		chalk.reset();
