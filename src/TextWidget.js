@@ -2,6 +2,7 @@ const BaseWidget = require('./BaseWidget.js');
 const markdownRenderer = require('./framework/markdownRenderer.js');
 const termutils = require('./framework/termutils.js');
 const sliceAnsi = require('slice-ansi');
+const chalk = require('chalk');
 
 class TextWidget extends BaseWidget {
 
@@ -194,7 +195,12 @@ class TextWidget extends BaseWidget {
 			if (y >= this.absoluteInnerY + this.innerHeight - 1) break;
 			y++;
 		}
-
+		if (lines.length > this.innerHeight) {
+			term.drawVLine(x + innerWidth - 1, 0, this.innerHeight+1, chalk.bgAnsi256(240).ansi256(16)(' '));
+			term.moveTo(x + innerWidth - 1, ((this.scrollTop) / (lines.length - this.innerHeight)) * this.innerHeight);
+			term.write(chalk.bgAnsi256(45).ansi256(255)(' '));
+		}
+		chalk.reset();
 		term.restoreCursor();
 	}
 

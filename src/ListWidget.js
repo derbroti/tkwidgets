@@ -312,6 +312,11 @@ class ListWidget extends BaseWidget {
 			}
 		}
 
+		if (this.items_.length > this.innerHeight) {
+			term.drawVLine(cursorX + this.innerWidth - 1, 0, this.innerHeight+1, chalk.bgAnsi256(240).ansi256(16)(' '));
+			term.moveTo(cursorX + this.innerWidth - 1, (this.topIndex / (this.items_.length - this.innerHeight)) * this.innerHeight);
+			term.write(chalk.bgAnsi256(45).ansi256(255)(' '));
+		}
 		chalk.reset();
 
 		term.restoreCursor();
