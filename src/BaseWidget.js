@@ -393,7 +393,7 @@ class BaseWidget {
 		const s = this.style;
 		let output = this.width;
 		if (s.borderLeftWidth) output-=1;
-		if (s.borderRightWidth) output-=2;
+		if (s.borderRightWidth) output-=1;
 		return output;
 	}
 
@@ -419,7 +419,6 @@ class BaseWidget {
 
 	get absoluteInnerX() {
 		let output = this.absoluteX;
-		output++
 		if (this.style.borderLeftWidth) output++;
 		return output;
 	}
@@ -517,7 +516,7 @@ class BaseWidget {
 		}
 
 		if (this.style.borderLeftWidth) {
-			term.drawVLine(x, y, height, vLineChar+' ');
+			term.drawVLine(x, y, height, vLineChar);
 		}
 
 		if (this.style.borderRightWidth) {
@@ -526,12 +525,12 @@ class BaseWidget {
 
 		if (this.style.borderBottomWidth && this.style.borderLeftWidth) {
 			term.moveTo(x, y + height - 1);
-			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻━[34m") : style('┴─'));
+			term.write(this.hasFocus ? style("┻") : style('┴'));
 		}
 
 		if (this.style.borderBottomWidth && this.style.borderRightWidth) {
 			term.moveTo(x + width - 1, y + height - 1);
-			term.write(this.hasFocus ? style("[38;5;"+activeBorderColor+"m┻[34m┴") : style('┴┴'));
+			term.write(this.hasFocus ? style("┻") : style('┴'));
 		}
 	}
 
