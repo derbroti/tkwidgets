@@ -86,10 +86,15 @@ class ListWidget extends BaseWidget {
 		} else if (name === 'PAGE_DOWN') {
 			this.pageDown();
 		} else if (name == 'TOP') {
-			this.topIndex = 0;
+			this.currentIndex = 0;
 		} else if (name == 'BOTTOM') {
-			this.scrollBottom();
+			this.currentIndex = this.maxTopIndex;
+		} else if (name == '5_UP') {
+			this.selectXUp(5);
+		} else if (name == '5_DOWN') {
+			this.selectXDown(5);
 		}
+
 
 		if (previousIndex !== this.currentIndex) {
 			this.onCurrentItemChange({
@@ -166,6 +171,14 @@ class ListWidget extends BaseWidget {
 
 	scrollBottom() {
 		this.bottomIndex = this.items_.length - 1;
+	}
+
+	selectXUp(x) {
+		this.currentIndex -= x;
+	}
+
+	selectXDown(x) {
+		this.currentIndex += x;
 	}
 
 	get currentItemVisible_() {
