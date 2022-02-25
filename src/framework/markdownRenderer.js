@@ -122,10 +122,8 @@ function headerUnderlineLevel(line) {
 
 function inlineHeaderLevel(line) {
 	if (!line || line.length <= 2) return 0;
-	if (line.indexOf('###') === 0) return 3;
-	if (line.indexOf('##') === 0) return 2;
-	if (line.indexOf('#') === 0) return 1;
-	return 0;
+	let lvl = line.match(/(#)\1*/g)||[''];
+	return lvl[0].length;
 }
 
 function headerLevelStyle(level, isAlreadyUnderlined) {
