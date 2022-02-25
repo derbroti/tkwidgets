@@ -499,13 +499,12 @@ class BaseWidget {
 
 		chalk.reset();
 
-		const focusStyle = chalk.white;
+		const focusStyle = chalk.ansi256(45);
 		const unfocusStyle = chalk.gray;
 		const style = this.hasFocus ? focusStyle : unfocusStyle;
-		const activeBorderColor = 45;
 
-		const hLineChar = this.hasFocus ? focusStyle("[38;5;"+activeBorderColor+"m━[34m") : unfocusStyle('─');
-		const vLineChar = this.hasFocus ? focusStyle("[38;5;"+activeBorderColor+"m┃[34m") : unfocusStyle('│');
+		const hLineChar = this.hasFocus ? focusStyle("━") : unfocusStyle('─');
+		const vLineChar = this.hasFocus ? focusStyle("┃") : unfocusStyle('│');
 
 		if (this.style.borderTopWidth) {
 			term.drawHLine(x, y, width, hLineChar);
