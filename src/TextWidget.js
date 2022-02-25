@@ -182,6 +182,8 @@ class TextWidget extends BaseWidget {
 
 		const lines = textToDisplay.split("\n");
 
+		let showScrollBar = (lines.length > this.innerHeight);
+
 		this.scrollableHeight_ = lines.length;
 		if (this.stickToBottom_) this.scrollTop_ = this.scrollableHeight_;
 		this.boundScrollTop_();
@@ -189,13 +191,17 @@ class TextWidget extends BaseWidget {
 		for (let i = this.scrollTop; i < lines.length; i++) {
 			const line = lines[i];
 
+			let padRight = '';
+			if (showScrollBar) padRight = ' ';
 			term.moveTo(x, y);
-			term.write(sliceAnsi(line, 0, innerWidth - 1));
+			//term.write(sliceAnsi(' ' + line + padRight, 0, innerWidth - (1 + padRight.length)));
+			term.write(sliceAnsi(' ' + line + padRight, 0, innerWidth - (1 + padRight.length)));
 
 			if (y >= this.absoluteInnerY + this.innerHeight - 1) break;
 			y++;
 		}
-		if (lines.length > this.innerHeight) {
+
+		if (showScrollBar) {
 			term.drawVLine(x + innerWidth - 1, 0, this.innerHeight+1, chalk.bgAnsi256(240).ansi256(16)(' '));
 			term.moveTo(x + innerWidth - 1, ((this.scrollTop) / (lines.length - this.innerHeight)) * this.innerHeight);
 			term.write(chalk.bgAnsi256(45).ansi256(255)(' '));
