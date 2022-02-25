@@ -19,11 +19,11 @@ function markdownRenderer(text, options = {}) {
 
 	const wrappedLines = [];
 
-	// separate title from text - derbroti 2022
-	wrappedLines.push(chalk.gray('━'.repeat(options.width)));
+	// separate title from text
+	wrappedLines.push(chalk.gray('─'.repeat(options.width)));
 	//wrappedLines.push(chalk.bold.underline(lines[0] + ' '.repeat(options.width - lines[0].length)));
 	wrappedLines.push(chalk.bold(lines[0]));
-	wrappedLines.push(chalk.gray('━'.repeat(options.width)));
+	wrappedLines.push(chalk.gray('─'.repeat(options.width)));
 
 	for (let i = 1; i < lines.length; i++) {
 		const line = lines[i];
