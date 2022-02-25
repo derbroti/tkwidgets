@@ -128,6 +128,10 @@ class TextWidget extends BaseWidget {
 			this.pageUp();
 		} else if (name === 'PAGE_DOWN') {
 			this.pageDown();
+		} else if (name == 'TOP') {
+			this.scrollTop = 0;
+		} else if (name == 'BOTTOM') {
+			this.scrollBottom();
 		} else if (name == '5_UP') {
 			this.scrollXUp(5);
 		} else if (name == '5_DOWN') {

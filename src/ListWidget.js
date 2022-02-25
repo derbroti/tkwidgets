@@ -85,6 +85,10 @@ class ListWidget extends BaseWidget {
 			this.pageUp();
 		} else if (name === 'PAGE_DOWN') {
 			this.pageDown();
+		} else if (name == 'TOP') {
+			this.topIndex = 0;
+		} else if (name == 'BOTTOM') {
+			this.scrollBottom();
 		}
 
 		if (previousIndex !== this.currentIndex) {
